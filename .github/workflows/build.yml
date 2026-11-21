@@ -1,7 +1,7 @@
-# Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
+# 自动构建工作流。
+# 注意：仓库未附带 libs/ 下的两个 Immersive Portals 编译期嵌套 jar
+# （imm_ptl_core-5.2.0.jar、q_misc_util-5.2.0.jar），详见 README「编译期 API 依赖」。
+# CI 执行编译前需先按 README 说明补齐 libs/，否则编译步骤会因找不到本地依赖而失败。
 
 name: build
 on: [pull_request, push]
@@ -12,17 +12,21 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v6
-      - name: validate gradle wrapper
-        uses: gradle/actions/wrapper-validation@v6
+
       - name: setup jdk
         uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'microsoft'
-      - name: make gradle wrapper executable
-        run: chmod +x ./gradlew
+
+      - name: setup gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 9.7.1
+
       - name: build
-        run: ./gradlew build
+        run: gradle build --no-daemon --no-configuration-cache
+
       - name: capture build artifacts
         uses: actions/upload-artifact@v7
         with:
