@@ -1,0 +1,22 @@
+{
+	"schemaVersion": 1,
+	"id": "bunkerconsole",
+	"version": "${version}",
+	"name": "Bunker Console",
+	"description": "37号避难所·循环地图控制台：每日重置、展示框检测、红石信号、IP 透视传送门、动态关卡维度",
+	"authors": ["you"],
+	"license": "CC0-1.0",
+	"icon": "assets/bunkerconsole/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["com.bunkerconsole.BunkerMod"],
+		"client": ["com.bunkerconsole.client.BunkerConsoleClient"]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"immersive_portals": "*"
+	}
+}

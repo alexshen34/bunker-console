@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "bunkerconsole:block/portal_block" }
+  }
+}
