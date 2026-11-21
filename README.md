@@ -35,18 +35,27 @@ Minecraft **1.20.1 / Fabric** 循环解谜地图控制台 Mod。围绕「每日�
 ### 环境要求
 
 - JDK **21**
-- Gradle 由 wrapper 提供（9.7.1），无需单独安装
+- Gradle **9.7.1**（本仓库未附带 `gradle-wrapper.jar`，可使用系统 Gradle，或在本机执行 `gradle wrapper --gradle-version 9.7.1` 重新生成 wrapper）
 
 ### 编译命令
 
 ```bash
-./gradlew build
+gradle build
+# 或补全 wrapper 后：./gradlew build
 ```
 
 产物位于 `build/libs/`：
 
 - `bunkerconsole-<version>.jar`：可直接放入 `mods/` 的主 Mod
 - `bunkerconsole-<version>-sources.jar`：源码包
+
+### 仓库未包含的文件
+
+以下二进制文件未随源码仓库提供，需要时从本地开发环境补齐：
+
+- `gradle/wrapper/gradle-wrapper.jar`：Gradle wrapper 二进制（可用 `gradle wrapper` 重新生成）
+- `src/main/resources/assets/bunkerconsole/` 下的纹理与图标 PNG（方块/物品材质）
+- `libs/` 下的编译期 IP API jar（见下节）
 
 ### 编译期 API 依赖（libs/）
 
